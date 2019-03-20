@@ -61,7 +61,7 @@ NAME       ALGORITHM DISKSIZE  DATA  COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram2 lz4            60M  4.7M 295.5K  568K       1 /var/backups
 
 ```
-
+/dev/zram2 zramdrive working with zram1 zram-swap-config and zram0 log2zram
 
 
 | Compressor name	     | Ratio	| Compression | Decompress. |
