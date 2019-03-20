@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. /etc/log2zram.conf
+. ./zramdrive.conf
 
 systemctl -q is-active zramdrive  && { echo "ERROR: zramdrive service is still running. Please run \"sudo service zramdrive stop\" to stop it and uninstall"; exit 1; }
 [ "$(id -u)" -eq 0 ] || { echo "You need to be ROOT (sudo can be used)"; exit 1; }
@@ -18,6 +18,7 @@ systemctl enable zramdrive
 
 # Make sure we start clean
 rm -rf $HDD_DIR
+mkdir -p $HDD_DIR
 
 echo "#####          Reboot to activate zramdrive         #####"
 echo "##### edit /etc/zramdrive.conf to configure options #####"
