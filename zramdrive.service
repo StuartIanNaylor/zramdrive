@@ -1,0 +1,15 @@
+[Unit]
+Description=zramdrive
+DefaultDependencies=no
+After=local-fs.target log2zram.service log2ram.service zram-swap-config.service
+
+[Service]
+Type=oneshot
+ExecStart= /usr/local/bin/zramdrive/zramdrive start
+ExecStop= /usr/local/bin/zramdrive/zramdrive stop
+TimeoutStartSec=120
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target
+
