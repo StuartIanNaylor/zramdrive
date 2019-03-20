@@ -1,13 +1,13 @@
-# Log2Zram
+# Zram
 
 Usefull for IoT / maker projects for reducing SD, Nand and Emmc block wear via log operations.
 Uses Zram to minimise precious memory footprint and extremely infrequent write outs.
 
-Log2Zam is a lower write fork https://github.com/azlux/log2ram based on transient log for Systemd here : [A transient /var/log](https://www.debian-administration.org/article/661/A_transient_/var/log)
+Zramdrive is a lower write fork https://github.com/azlux/log2ram based on transient log for Systemd here : [A transient /var/log](https://www.debian-administration.org/article/661/A_transient_/var/log)
 Many thanks to Azlux for the great initial project.
 
-Can not be used for mission critical logging applications where a system crash and log loss is unaceptable.
-If the extremely unlikely event of a system crash is not a major concern then L2Z can massively reduce log block wear whilst maintaining and extremely tiny memory footprint. Further resilience can be added by the use of a watchdog routine to force stop.
+Can not be used for mission critical applications where a system crash and log loss is unaceptable.
+If the extremely unlikely event of a system crash is not a major concern then L2Z can massively reduce block wear whilst maintaining and extremely tiny memory footprint whilst inceasing i/o perf. Further resilience can be added by the use of a watchdog routine to force stop.
 
 _____
 ## Menu
@@ -17,9 +17,9 @@ _____
 4. [Uninstall](#uninstall-)
 
 ## Install
-    sudo apt-get install git rsync
-    git clone https://github.com/StuartIanNaylor/log2zram
-    cd log2zram
+    sudo apt-get install git
+    git clone https://github.com/StuartIanNaylor/zramdrive
+    cd zramdrive
     sudo sh install.sh
     
 
