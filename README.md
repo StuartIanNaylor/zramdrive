@@ -25,7 +25,7 @@ _____
 
 ## Customize
 #### variables :
-In the file `/etc/log2zram.conf` sudo nano /etc/log2zram.conf to edit:
+In the file `/etc/zramdrive.conf` sudo nano /etc/zramdrive.conf to edit:
 ```
 # Size for the zram memory used, it defines the mem_limit for the zram device.
 # The default is 20M and is basically enough for minimal applications.
