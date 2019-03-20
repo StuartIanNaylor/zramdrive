@@ -6,8 +6,8 @@ Uses Zram to minimise precious memory footprint and extremely infrequent write o
 Zramdrive is a lower write fork https://github.com/azlux/log2ram based on transient log for Systemd here : [A transient /var/log](https://www.debian-administration.org/article/661/A_transient_/var/log)
 Many thanks to Azlux for the great initial project.
 
-Can not be used for mission critical applications where a system crash and log loss is unaceptable.
-If the extremely unlikely event of a system crash is not a major concern then L2Z can massively reduce block wear whilst maintaining and extremely tiny memory footprint whilst inceasing i/o perf. Further resilience can be added by the use of a watchdog routine to force stop.
+Can not be used for mission critical applications where a system crash and data loss is unaceptable.
+If the extremely unlikely event of a system crash is not a major concern then Zramdrive can massively reduce block wear whilst maintaining and extremely tiny memory footprint whilst inceasing i/o perf. Further resilience can be added by the use of a watchdog routine to force stop or full blown battery backup.
 
 _____
 ## Menu
