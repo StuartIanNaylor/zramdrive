@@ -1,4 +1,4 @@
-# Zram
+# Zramdrive
 
 Usefull for IoT / maker projects for reducing SD, Nand and Emmc block wear via log operations.
 Uses Zram to minimise precious memory footprint and extremely infrequent write outs.
