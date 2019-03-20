@@ -1,6 +1,6 @@
 # Zramdrive
 
-Usefull for IoT / maker projects for reducing SD, Nand and Emmc block wear via log operations.
+Usefull for IoT / maker projects for reducing SD, Nand and Emmc block wear via write operations.
 Uses Zram to minimise precious memory footprint and extremely infrequent write outs.
 
 Zramdrive is a lower write fork https://github.com/azlux/log2ram based on transient log for Systemd here : [A transient /var/log](https://www.debian-administration.org/article/661/A_transient_/var/log)
