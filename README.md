@@ -42,7 +42,7 @@ COMP_ALG=lz4
 # Really a guestimate of a bit bigger than compression ratio whilst minimising 0.1% mem usage of disk size
 DISK_SIZE=60M
 # HDD_DIR is the persistant directory that your bind will move the old directory to.
-# Can be any name often and /var or /opt are valid locations but can be placed anywhere
+# Can be any name often placed in /var or /opt are valid locations but can be placed anywhere
 HDD_DIR=/opt/moved
 # ZRAM_DIR is the directory that will firstly mounted at HDD_DIR then mounted as Zram with data copied
 # ZRAM_DIR is the live zram drive of the directory you wish to use
