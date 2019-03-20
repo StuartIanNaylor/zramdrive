@@ -40,6 +40,7 @@ COMP_ALG=lz4
 # DISK_SIZE is expected compression ratio of alg chosen multiplied by SIZE where 300% is an approx good level.
 # lzo/lz4=2.1:1 compression ratio zlib=2.7:1 zstandard=2.9:1
 # Really a guestimate of a bit bigger than compression ratio whilst minimising 0.1% mem usage of disk size
+# zlib (deflate) and zstd are very good with text compression up to 3.3:1
 DISK_SIZE=60M
 # HDD_DIR is the persistant directory that your bind will move the old directory to.
 # Can be any name often placed in /var or /opt are valid locations but can be placed anywhere
