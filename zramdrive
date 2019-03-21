@@ -69,6 +69,11 @@ case "$1" in
 		umount -l $ZRAM_DIR/
 		umount -l $HDD_DIR/
 		;;
+		
+	write)
+		echo 'zramdrive: writeToHdd'  2>&1 | logger &
+		cp -arvfu $ZRAM_DIR -T $HDD_DIR 2>&1 | logger &
+		;;
 
 	*)
 		echo "Usage: log2ram {start|stop|write}" >&2
