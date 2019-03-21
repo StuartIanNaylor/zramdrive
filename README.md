@@ -60,7 +60,7 @@ NAME       ALGORITHM DISKSIZE  DATA  COMPR TOTAL STREAMS MOUNTPOINT
 /dev/zram0 lz4            15M    5M 348.4K  772K       1 /var/log
 /dev/zram1 lz4         650.2M    4K    64B    4K       1 [SWAP]
 /dev/zram2 lz4            60M  4.7M 295.5K  568K       1 /var/backups
-'''
+…
 sudo /usr/local/bin/zramdrive/zramdrive write
 This will write out any updated files to persistant storage, usefull for new installs without need for start/stop or reboot
 ```
