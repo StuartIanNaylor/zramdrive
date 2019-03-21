@@ -5,6 +5,7 @@ Uses Zram to minimise precious memory footprint and extremely infrequent write o
 
 Zramdrive is a lower write fork https://github.com/azlux/log2ram based on transient log for Systemd here : [A transient /var/log](https://www.debian-administration.org/article/661/A_transient_/var/log)
 Many thanks to Azlux for the great initial project.
+Zramdrive allows you to choose which directory you will move and then mount a zram drive in place, doesn't have to be logs and can be any high write frequency directory / directories. 
 
 Can not be used for mission critical applications where a system crash and data loss is unaceptable.
 If the extremely unlikely event of a system crash is not a major concern then Zramdrive can massively reduce block wear whilst maintaining and extremely tiny memory footprint whilst increasing i/o perf. Further resilience can be added by the use of a watchdog routine to force stop or full blown battery backup.
