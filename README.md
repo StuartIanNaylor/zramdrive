@@ -10,6 +10,8 @@ Zramdrive allows you to choose which directory you will move and then mount a zr
 Can not be used for mission critical applications where a system crash and data loss is unaceptable.
 If the extremely unlikely event of a system crash is not a major concern then Zramdrive can massively reduce block wear whilst maintaining and extremely tiny memory footprint whilst increasing i/o perf. Further resilience can be added by the use of a watchdog routine to force stop or full blown battery backup.
 
+Works well in conjunction with https://github.com/StuartIanNaylor/zram-swap-config and https://github.com/StuartIanNaylor/log2zram
+
 _____
 ## Menu
 1. [Install](#install)
