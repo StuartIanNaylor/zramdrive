@@ -87,3 +87,8 @@ This will write out any updated files to persistant storage, usefull for new ins
 sudo sh /usr/local/bin/zramdrive/uninstall.sh
 ```
 $HDD_DIR is retained on uninstall and only removed on new install.
+
+## Git Branches & Update
+Enter `git add --all` at the command line to add the files or changes to the repository
+Enter `git commit -m '<commit_message>'` at the command line to commit new files/changes to the local repository. For the <commit_message> , you can enter anything that describes the changes you are committing.
+Enter `git push`  at the command line to copy your files from your local repository to remote.
