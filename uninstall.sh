@@ -5,9 +5,10 @@ then
 	service zramdrive stop
 	systemctl disable zramdrive
 	rm /etc/systemd/system/zramdrive.service
-	rm /usr/local/bin/zramdrive/zramdrive
+	rm /usr/local/bin/zramdrive
 	rm /etc/zramdrive.conf
-
+	rm -rf /usr/local/share/zramdrive
+	rm -rf /usr/local/lib/zramdrive
 
 	echo "zramdrive is uninstalled, removing the uninstaller in progress"
 	rm -rf /usr/local/bin/zramdrive
