@@ -3,10 +3,11 @@
 Usefull for IoT / maker projects for reducing SD, Nand and Emmc block wear via write operations.
 Uses Zram to minimise precious memory footprint and extremely infrequent write outs.
 
-Zramdrive is a lower write fork https://github.com/azlux/log2ram based on transient log for Systemd here : [A transient /var/log](https://www.debian-administration.org/article/661/A_transient_/var/log)
-Many thanks to Azlux for the great initial project.
-Zramdrive allows you to choose which directory you will move and then mount a zram drive in place, doesn't have to be logs and can be any high write frequency directory / directories. 
+Uses an OverlayFS lower bind mount of /var/log to /opt/zram and upper zram to create fast startups and extremely small memory requirements.
+On stop uses https://github.com/kmxz/overlayfs-tools merge tool to merge from volatile ram to persistant.
+Many thanks kmxz for providing one of the only overlayfs tools available. 
 
+Works well in conjunction with https://github.com/StuartIanNaylor/log2zram and https://github.com/StuartIanNaylor/zram-swap-config
 Can not be used for mission critical applications where a system crash and data loss is unaceptable.
 If the extremely unlikely event of a system crash is not a major concern then Zramdrive can massively reduce block wear whilst maintaining and extremely tiny memory footprint whilst increasing i/o perf. Further resilience can be added by the use of a watchdog routine to force stop or full blown battery backup.
 
@@ -43,31 +44,43 @@ COMP_ALG=lz4
 # DISK_SIZE is expected compression ratio of alg chosen multiplied by SIZE where 300% is an approx good level.
 # lzo/lz4=2.1:1 compression ratio zlib=2.7:1 zstandard=2.9:1
 # Really a guestimate of a bit bigger than compression ratio whilst minimising 0.1% mem usage of disk size
-# zlib (deflate) and zstd are very good with text compression up to 3.3:1
 DISK_SIZE=60M
 # HDD_DIR is the persistant directory that your bind will move the old directory to.
-# Can be any name often placed in /var or /opt are valid locations but can be placed anywhere
+# Can be any name often and /var or /opt are valid locations but can be placed anywhere
 HDD_DIR=/opt/moved
 # ZRAM_DIR is the directory that will firstly moved to HDD_DIR then mounted as Zram with data copied
 # ZRAM_DIR is the live zram drive of the directory you wish to use
-ZRAM_DIR=/var/backups
+ZRAM_DIR=/var/cache
+# Zram & mount directories default can be changed if wished
+ZDIR=/opt/zram
 ```
 
 
 
 ### It is working?
 ```
-pi@raspberrypi:~/zramdrive $ zramctl
-NAME       ALGORITHM DISKSIZE  DATA  COMPR TOTAL STREAMS MOUNTPOINT
-/dev/zram0 lz4            15M    5M 348.4K  772K       1 /var/log
-/dev/zram1 lz4         650.2M    4K    64B    4K       1 [SWAP]
-/dev/zram2 lz4            60M  4.7M 295.5K  568K       1 /var/backups
+pi@raspberrypi:~ $ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        15G  1.2G   13G   9% /
+devtmpfs        460M     0  460M   0% /dev
+tmpfs           464M     0  464M   0% /dev/shm
+tmpfs           464M  6.2M  458M   2% /run
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           464M     0  464M   0% /sys/fs/cgroup
+/dev/mmcblk0p1   44M   22M   22M  50% /boot
+/dev/zram0      1.5G  8.5M  1.4G   1% /opt/zram/zram0
+overlay0        1.5G  8.5M  1.4G   1% /var/log
+/dev/zram1       55M   84K   50M   1% /opt/zram/zram1
+overlay1         55M   84K   50M   1% /var/cache
+tmpfs            93M     0   93M   0% /run/user/1000
+
 …
-sudo /usr/local/bin/zramdrive/zramdrive write
-…
-This will write out any updated files to persistant storage, usefull for new installs without need for start/stop or reboot
+pi@raspberrypi:~ $ zramctl
+NAME       ALGORITHM DISKSIZE  DATA COMPR TOTAL STREAMS MOUNTPOINT
+/dev/zram0 lz4           1.5G   37M  1.5M  1.9M       4 /opt/zram/zram0
+/dev/zram1 lz4            60M  4.2M  4.9K   68K       4 /opt/zram/zram1
 ```
-/dev/zram2 zramdrive working with zram1 zram-swap-config and zram0 log2zram
+/dev/zram1 zramdrive working with zram0 log2zram
 
 
 | Compressor name	     | Ratio	| Compression | Decompress. |
