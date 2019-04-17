@@ -57,7 +57,7 @@ case "$1" in
 		mergeOverlay >>${ZLOG} 2>&1
 		if umount --verbose ${ZDIR}${ZRAM_DEV}/ >>${ZLOG} 2>&1
 		then
-			echo "umount ${ZDIR}{ZRAM_DEV}/" >>${ZLOG}
+			echo "umount ${ZDIR}${ZRAM_DEV}/" >>${ZLOG}
 		else
 			umount --verbose -l ${ZDIR}{ZRAM_DEV}/ >>${ZLOG} 2>&1 
 		fi
