@@ -21,9 +21,9 @@ createZramDrive () {
 }
 
 mergeOverlay () {
-	echo "overlay lowerdir=${HDD_LOG},upperdir=${ZDIR}/zram${DEV_NUM}/upper" >>${ZLOG}
+	echo "overlay lowerdir=${HDD_DIR},upperdir=${ZDIR}/zram${DEV_NUM}/upper" >>${ZLOG}
 	cd /usr/local/lib/zramdrive/
-	./overlay merge -l "${HDD_LOG}" -u "${ZDIR}/zram${DEV_NUM}/upper" >>${ZLOG} 2>&1 || return 1
+	./overlay merge -l "${HDD_DIR}" -u "${ZDIR}/zram${DEV_NUM}/upper" >>${ZLOG} 2>&1 || return 1
 	sh -x *.sh  >>${ZLOG} 2>&1 || return 1
 	rm -v *.sh  >>${ZLOG} 2>&1 || return 1
 	
