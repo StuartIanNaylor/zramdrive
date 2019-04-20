@@ -24,7 +24,7 @@ mergeOverlay () {
 	echo "overlay lowerdir=${HDD_DIR},upperdir=${ZDIR}/zram${DEV_NUM}/upper" >>${ZLOG}
 	cd /usr/local/lib/zramdrive/
 	./overlay merge -l "${HDD_DIR}" -u "${ZDIR}/zram${DEV_NUM}/upper" >>${ZLOG} 2>&1 || return 1
-	sh -x *.sh  >>${ZLOG} 2>&1 || return 1
+	sh *.sh  >>${ZLOG} 2>&1 || return 1
 	rm -v *.sh  >>${ZLOG} 2>&1 || return 1
 	
 }
@@ -39,7 +39,7 @@ case "$1" in
 		mkdir -vp ${ZDIR}/zram${DEV_NUM} >>${ZLOG} 2>&1 || exit 1
 		mount --verbose --types ext4 $MNT_OPTS /dev/zram${DEV_NUM} ${ZDIR}/zram${DEV_NUM}/ >>${ZLOG} 2>&1 || exit 1
 		mkdir -vp ${ZDIR}/zram${DEV_NUM}/upper ${ZDIR}/zram${DEV_NUM}/workdir ${ZRAM_LOG} >>${ZLOG} 2>&1 || exit 1
-		mount --verbose --types overlay -o redirect_dir=off,lowerdir=${HDD_DIR},upperdir=${ZDIR}/zram${DEV_NUM}/upper,workdir=${ZDIR}/zram${DEV_NUM}/workdir overlay${DEV_NUM} ${ZRAM_DIR} >>${ZLOG} 2>&1 || exit 1
+		mount --verbose --types overlay -o lowerdir=${HDD_DIR},upperdir=${ZDIR}/zram${DEV_NUM}/upper,workdir=${ZDIR}/zram${DEV_NUM}/workdir overlay${DEV_NUM} ${ZRAM_DIR} >>${ZLOG} 2>&1 || exit 1
 		echo "/zram${DEV_NUM}" > ${ZSHARE}/zram-device-list
 		;;
 

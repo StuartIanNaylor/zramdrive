@@ -6,8 +6,8 @@ systemctl -q is-active zramdrive  && { echo "ERROR: zramdrive service is still r
 [ "$(id -u)" -eq 0 ] || { echo "You need to be ROOT (sudo can be used)"; exit 1; }
 [ -d /usr/local/bin/zramdrive ] && { echo "zramdrive is already installed, uninstall first"; exit 1; }
 
-apt-get install libattr1-dev
-git clone https://github.com/kmxz/overlayfs-tools
+#apt-get install libattr1-dev -y already part of core
+git clone -b fix_xattr_lib_include https://github.com/Izual750/overlayfs-tools
 cd overlayfs-tools
 make
 cd ..

@@ -2,7 +2,7 @@
 
 if [ "$(id -u)" -eq 0 ]
 then
-	service zramdrive stop
+	systemctl stop zramdrive
 	systemctl disable zramdrive
 	rm /etc/systemd/system/zramdrive.service
 	rm /usr/local/bin/zramdrive
